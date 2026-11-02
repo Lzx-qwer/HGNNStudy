@@ -13,3 +13,5 @@ deeprobust==0.2.11
 ipdb==0.13.13
 numpy==1.24.3
 dask==2024.8.0
+
+pandas==2.0.3

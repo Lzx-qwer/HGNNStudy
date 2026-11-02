@@ -1,20 +1,18 @@
-# uv 虚拟环境
-.venv/
-
 # 数据集目录
 data/
 
+# uv 虚拟环境
+dhgbench/.venv/
+
 # IDE 配置
-.idea/
+dhgbench/.idea/
 
 # Python 缓存
+dhgbench/__pycache__/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.egg-info/
-dist/
-build/
+
+*.py[cod]
+*$py.class
 
 # 日志
 *.log
