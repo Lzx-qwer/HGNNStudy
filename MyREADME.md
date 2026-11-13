@@ -23,7 +23,7 @@ https://github.com/Coco-Hut/DHG-Bench
 
 ## 一.代码克隆和数据集下载
 
-#### 1.通过 **git** 克隆代码
+#### 1.通过 **git** 克隆本复现仓库代码
 
 ```
 git clone https://github.com/Lzx-qwer/HGNNStudy.git 
@@ -31,7 +31,7 @@ git clone https://github.com/Lzx-qwer/HGNNStudy.git
 
 #### 2.下载数据集
 
-本次复现数据集未上传仓库，根据原仓库作者，所有基准数据集均可在 **Hugging Face** 数据集中心获取，以下为链接：
+本次复现数据集文件未上传仓库，根据原仓库作者，所有基准数据集均可在 **Hugging Face** 数据集中心获取，以下为链接：
 
 https://huggingface.co/datasets/Philley/DHG-Bench-dataset
 
@@ -102,7 +102,7 @@ uv pip install -r requirements.txt -f https://data.pyg.org/whl/torch-2.2.0+cu121
 
 ## 三.实验复现
 
-#### 1.table 1 复现
+#### 1.table 1 与 table A5 复现
 
 ##### 1.1激活环境
 
@@ -135,15 +135,23 @@ python main.py --dname=cora --task_type=node_cls --method=HGNN --num_seeds=5
 
 ##### **1.3 复现命令说明**
 
-通过更改命令行的参数设置，可以让不同模型实现不同数据集下的不同类型任务。只需要更改**`--dname`**的参数来更换数据集，以及更改**`--method`**参数来更改模型即可。
+通过更改命令行的参数设置，可以让不同模型实现不同数据集下的不同类型任务。
 
+复现命令依据上面示例命令为模板，只需要更改**`--dname`**的参数来更换数据集，以及更改**`--method`**参数来更改模型即可。源代码会根据数据集匹配对应配置，若无配置，则报错。
 
+下面给出 table 1 和table A5 用到的所有**`--dname`**参数和**`--method`**参数的可选项：
 
+**`--dname`**（前10个为table1，后2个为table A5）：
 
+```
+['cora', 'pubmed', 'coauthor_cora', 'coauthor_dblp','walmart-trips-100', 'trivago','actor', 'twitch', 'pokec', 'yelp', 'NTU2012', 'ModelNet40']
+```
 
+**`--method`**（按论文表格顺序）
 
-
-
+```
+['MLP', 'CEGCN','CEGAT', 'HGNN', 'HyperGCN', 'HCHA', 'LEGCN', 'HyperND', PhenomNN', 'SheafHyperGNN', 'HJRL', 'DPHGNN', 'TFHNN', 'HNHN', 'UniGCNII', 'AllSetformer', 'EDHNN', 'HyperGT', 'EHNN','TMPHN']
+```
 
 
 
