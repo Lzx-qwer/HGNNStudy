@@ -1,6 +1,6 @@
 # DHG-Bench: A Comprehensive Benchmark for Deep Hypergraph Learning 论文部分结果复现
 
-## <span id="citation">📖  原论文引用</span>
+## <span id="citation">📖 原论文引用</span>
 
 ```bibtex
 @inproceedings{li2026dhg,
@@ -29,7 +29,7 @@ https://github.com/Coco-Hut/DHG-Bench
 git clone https://github.com/Lzx-qwer/HGNNStudy.git 
 ```
 
-#### 2.下载数据集
+#### 2.Hugging Face下载数据集
 
 本次复现数据集文件未上传仓库，根据原仓库作者，所有基准数据集均可在 **Hugging Face** 数据集中心获取，以下为链接：
 
@@ -60,7 +60,7 @@ HGNNStudy
 
 ## 二.运行环境安装
 
-#### 1.安装 uv
+#### 1.安装 uv 包管理工具
 
 原仓库作者未说明使用什么包管理工具，所以本次复现使用 **uv** 进行包管理，**uv** 的下载不做说明，可以参考下面给出的链接，已安装 **uv** 请忽略：
 
@@ -156,6 +156,16 @@ python main.py --dname=cora --task_type=node_cls --method=HGNN --num_seeds=5
 
 
 ***注意：***原仓库 **Readme** 文件中，作者给出的示例运行命令包含`--is_default=True`参数，其本意为通过 **Ture** 或 **False** 来控制是否使用作者提供的默认配置，但是源代码在解析时存在**Bug**未指定**is_default**的参数类型），导致后面的 **Ture** 或 **False** 会被默认识别为**str**字符串，在解析时又使用`if args.is_default`语句判断 **Ture** 或 **False** ，最终导致无论指定 **Ture** 或 **False**，字符串始终有值，始终会被判断为**True**，始终走作者默认配置，这样最终导致不少复现准确率与论文数据偏差过大，只有命令中完全删除`--is_default`参数，这样该参数默认为**False**，才可以不走默认配置。
+
+
+
+##### **1.4 复现配置说明**
+
+源代码会根据输入的命令自动匹配`lib_yamls`文件夹下的配置，下面解释流程：
+
+1. `lib_yamls`文件夹下根据不同任务类型又分为3个子文件夹，首先根据`--task_type`参数匹配对应的子文件夹，本次复现为节点分类任务，会匹配到`node_yaml`子文件夹。
+2. 然后根据**`--method`**参数匹配到对应模型的 **yaml** 配置文件，里面包含作者提供的该模型所有数据集的配置（例如学习率lr等），以及默认配置。
+3. 最后根据**`--dname`**参数匹配到 **yaml** 配置文件中具体的配置。
 
 
 
