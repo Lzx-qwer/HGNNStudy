@@ -80,7 +80,7 @@ uv venv --python 3.9.21 .venv
 根据原仓库作者的依赖版本要求，本次复现用的是最低的符合原作者要求的版本，如下所示：
 
 * Python==3.9.21
-* Pytorch==2.2.2
+* torch==2.2.2
 * torch_geometric==2.6.1
 * torch-cluster==1.6.3
 * torch-scatter==2.1.2
