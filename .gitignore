@@ -13,6 +13,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#复现产生的缓存
+dhgbench/lib_ehnn_cache/*.pt
+
 # 日志
 *.log
 

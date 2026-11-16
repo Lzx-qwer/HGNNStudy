@@ -1,28 +1,6 @@
-<p align="center">
-<img src="resources/logo.png" width="100%" class="center" alt="logo"/>
-</p>
+# DHG-Bench: A Comprehensive Benchmark for Deep Hypergraph Learning 论文部分结果复现
 
-<p align="center">
-⭐️ If you find <strong>DHG-Bench</strong> useful, please consider giving us a star — your support helps us grow! ⭐️
-</p>
-
-------
-
-<p align="center">
-  <a href="#overview-of-the-benchmark">Overview of the Benchmark</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#references">Algorithm References</a> •
-  <a href="#citation">Citation</a> 
-</p>
-
-# DHG-Bench: A Comprehensive Benchmark for Deep Hypergraph Learning (ICLR 2026)
-
-DHG-Bench is an open and unified pipline for Deep Hypergraph Learning (DHGL) based on [PyTorch](https://pytorch.org/) and [PyTorch Geometric](https://www.pyg.org/). We embark on **17** state-of-the-art hypergraph neural network (HNN) algorithms in node-level, edge-level, and graph-level tasks and analyze their performance in **22** distinct hypergraph datasets.
-
-## <span id="citation">📖 How to Cite</span>
-
-If you are interested or inspired by this work, you can cite us by:
+## <span id="citation">📖 原论文引用</span>
 
 ```bibtex
 @inproceedings{li2026dhg,
@@ -35,54 +13,34 @@ If you are interested or inspired by this work, you can cite us by:
 }
 ```
 
-## <span id="overview-of-the-benchmark">📔 Overview of the Benchmark</span>
+## **<span id="citation">📖  原仓库地址</span>**
 
-<div align="center">
-  <img src="resources/overview.jpg" alt="Overview of the DHG-Bench" width=100%/>
-  <p align="center"><em>Figure 1: Pipeline of the DHG-Bench.</em></p>
-</div>
-
-DHG-Bench provides a fair and comprehensive platform to evaluate existing HNN algorithms and facilitate future DHGL research. Our main contributions are summarized as follows:
-
-* DHG-Bench enables a fair and unified comparison among 17 state-of-the-art HNN algorithms
-and 22 diverse hypergraph datasets covering node-level, edge-level, and graph-level tasks. To the
-best of our knowledge, this is the first comprehensive benchmark for deep hypergraph learning.
-
-* We conduct a systematic analysis of HNN methods from various dimensions, including effec-
-tiveness, efficiency, robustness, and fairness. Through extensive experiments, we reveal both the
-strengths and limitations of existing algorithms, offering valuable insights to inform and inspire
-future research in this field.
-
-* We release DHG-Bench, an easy-to-use open-source benchmark library to support future DHGL
-research. Besides, with our toolkit, users can readily evaluate their algorithms or datasets with
-less effort.
-
-## <span id="installation">📦 Installation</span>
-
-Follow the steps below to install and configure **DHG-Bench** properly for your local environment.
-
-**Installation for Local Development:**
-
-``` bash
-git clone https://github.com/Coco-Hut/DHG-Bench.git 
-cd DHG-Bench
+```
+https://github.com/Coco-Hut/DHG-Bench
 ```
 
-**Download Datasets**
 
-All benchmark datasets are available on the Hugging Face Dataset Hub:
+
+## 一.代码克隆和数据集下载
+
+#### 1.通过 **git** 克隆本复现仓库代码
+
+```
+git clone https://github.com/Lzx-qwer/HGNNStudy.git 
+```
+
+#### 2.Hugging Face下载数据集
+
+本次复现数据集文件未上传仓库，根据原仓库作者，所有基准数据集均可在 **Hugging Face** 数据集中心获取，以下为链接：
 
 https://huggingface.co/datasets/Philley/DHG-Bench-dataset
 
-After downloading `data.zip` from the Hugging Face repository, extract it via:
+从 **Hugging Face** 下载数据集，得到文件夹：**DHG-Bench-dataset**，取出里面的 **data.zip** 压缩包，解压得到 **data** 文件夹，放入 **HGNNStudy** 文价夹中。
+
+最后结构如下所示:
 
 ```bash
-unzip data.zip
-```
-to obtain the data directory. The project structure should look like the following:
-
-```bash
-DHG-Bench
+HGNNStudy
   ├── data
   │   ├── fair_data
   │   ├── hete_data
@@ -94,61 +52,125 @@ DHG-Bench
   │   ├── parameter_parser.py
   │   ├── lib_dataset
   │   ├── lib_models
-  │   ├── lib_utils
+  │   ├── requirements.txt
   └── └── ...
 ```
 
-**Required Dependencies:**
 
-**DHG-Bench** needs the following requirements to be satisfied beforehand:
 
-* Python>=3.9.21
-* Pytorch>=2.2.2
-* torch_geometric>=2.6.1
-* torch-cluster>=1.6.3
-* torch-scatter>=2.1.2
-* torch-sparse>=0.6.18
-* torch-spline-conv>=1.2.2
+## 二.运行环境安装
+
+#### 1.安装 uv 包管理工具
+
+原仓库作者未说明使用什么包管理工具，所以本次复现使用 **uv** 进行包管理，**uv** 的下载不做说明，可以参考下面给出的链接，已安装 **uv** 请忽略：
+
+https://github.com/astral-sh/uv
+
+#### 2.虚拟环境创建与激活
+
+进入 **HGNNStudy\dhgbench** 目录，打开 **cmd** 终端，输入下列语句创建并激活虚拟环境，注意这里一行是一条语句，一共两条：
+
+```
+uv venv --python 3.9.21 .venv
+.venv\Scripts\activate
+```
+
+####  3.依赖安装
+
+根据原仓库作者的依赖版本要求，本次复现用的是最低的符合原作者要求的版本，如下所示：
+
+* Python==3.9.21
+* Pytorch==2.2.2
+* torch_geometric==2.6.1
+* torch-cluster==1.6.3
+* torch-scatter==2.1.2
+* torch-sparse==0.6.18
+* torch-spline-conv==1.2.2
 * deeprobust==0.2.11
 * ipdb==0.13.13
 * numpy==1.24.3
 * dask==2024.8.0
+* pandas==2.0.3
 
-## <span id="quick-start">🚀 Quick Start</span>
+所有依赖及对应版本均在 **requirements.txt** 中记录，激活 **uv** 虚拟环境后通过下列命令安装依赖(这是一整条命令)：
 
-The following commands show how to quickly run an existing HNN algorithm across different hypergraph tasks.
-
-For example, to run the HGNN method on the Cora dataset for a node classification task, use the following command:
-
-```bash
-python main.py --dname=cora --task_type=node_cls --method=HGNN --is_default=True
+```
+uv pip install -r requirements.txt -f https://data.pyg.org/whl/torch-2.2.0+cu121.html --extra-index-url https://download.pytorch.org/whl/cu121
 ```
 
-For example, to run the EDHNN method on the Pubmed dataset for a hyperedge prediction task, use the following command:
 
-```bash
-python main.py --dname=pubmed --task_type=edge_pred --method=EDHNN --is_default=True
+
+## 三.实验复现
+
+#### 1.table 1 与 table A5 复现
+
+##### 1.1激活环境
+
+这里采用 **cmd** 终端运行，首先进入**HGNNStudy\dhgbench** 目录的 cmd 终端，输入以下命令激活 uv 虚拟环境：
+
+```
+.venv\Scripts\activate
 ```
 
-By default, `edge_pred` uses the original DHG-Bench protocol for backward compatibility. To evaluate a held-out hyperedge prediction protocol where validation/test target hyperedges are removed from the message-passing hypergraph, use:
 
-```bash
-python main.py --dname=pubmed --task_type=edge_pred --method=EDHNN --is_default=True --edge_pred_protocol=observed --edge_split_mode=trand
+
+##### 1.2 输入命令进行训练
+
+复现采用5次取平均值的方式得到最终结果，下面给出一个命令示例和对应的解释：
+
+```
+python main.py --dname=cora --task_type=node_cls --method=HGNN --num_seeds=5
 ```
 
-In `--edge_pred_protocol=observed`, DHG-Bench assigns at least approximately 60% of the canonical dataset hyperedges to training and divides the remainder as evenly as possible between validation and test. The training partition is expanded when necessary to cover every node that participates in a canonical hyperedge, so its realized proportion can exceed 60%. The complete training partition is used both as the message-passing hypergraph and as supervised training positives, while validation/test positives remain structurally held out. Method-required self-loops and AllSet graph transformations are applied only to the training message-passing graph and never become prediction labels. Model-specific preprocessing is then constructed from this training graph only. Negative sampling excludes all true dataset hyperedges.
+- **`--dname=cora`**
+  - **作用**：指定**数据集**（Dataset Name）。这里是经典的引文网络数据集 `cora`，具体一共有哪些数据集可查看`HGNNStudy\dhgbench\lib_dataset\_init_.py`文件。
+- **`--task_type=node_cls`**
+  - **作用**：指定**任务类型**（Task Type）。`node_cls` 代表 Node Classification（节点分类任务）；`edge_pred`代表Edge Prediction（超边预测）；`hg_cls` 代表 Hypergraph Classification （超图分类）。
+- **`--method=HGNN`**
+  - **作用**：指定**使用的模型**。这里是超图神经网络 `HGNN`，具体一共有哪些模型可查看`HGNNStudy\dhgbench\lib_models\_init_.py`文件。
+- **`--num_seeds=5`**
+  - **作用**：指定**实验运行次数**（随机种子数量）。设置为 `5` 意味着程序会跑 5 次（Seed 0 到 Seed 4），并在最后输出这 5 次结果的**平均值（Mean）**和**标准差（Std）**。
 
-Perturbations are not supported by the `observed` edge-prediction protocol. Combining `--edge_pred_protocol=observed` with `--is_perturbed=True` raises an error; use the `legacy` protocol for existing perturbation experiments.
 
-For example, to run the TFHNN method on the stream_player dataset for a hypergraph classification task, use the following command:
 
-```bash
-python main.py --dname=stream_player --task_type=hg_cls --method=TFHNN --is_default=True
+##### **1.3 复现命令说明**
+
+通过更改命令行的参数设置，可以让不同模型实现不同数据集下的不同类型任务。
+
+复现命令依据上面示例命令为模板，只需要更改**`--dname`**的参数来更换数据集，以及更改**`--method`**参数来更改模型即可。源代码会根据数据集匹配对应配置，若无配置，则报错。
+
+下面给出 table 1 和table A5 用到的所有**`--dname`**参数和**`--method`**参数的可选项：
+
+**`--dname`**（前10个为table1，后2个为table A5）：
+
+```
+['cora', 'pubmed', 'coauthor_cora', 'coauthor_dblp','walmart-trips-100', 'trivago','actor', 'twitch', 'pokec', 'yelp', 'NTU2012', 'ModelNet40']
 ```
 
-Note that The **is_default** parameter indicates whether to use the model’s default configuration. If set to False, the model will instead load parameter settings specific to the given dataset. All model parameter files are provided in the lib_yamls directory.
+**`--method`**（按论文表格顺序）
 
-## <span id="references">🧩 Algorithm References</span>
+```
+['MLP', 'CEGCN','CEGAT', 'HGNN', 'HyperGCN', 'HCHA', 'LEGCN', 'HyperND', PhenomNN', 'SheafHyperGNN', 'HJRL', 'DPHGNN', 'TFHNN', 'HNHN', 'UniGCNII', 'AllSetformer', 'EDHNN', 'HyperGT', 'EHNN','TMPHN']
+```
+
+
+
+***注意：***原仓库 **Readme** 文件中，作者给出的示例运行命令包含`--is_default=True`参数，其本意为通过 **Ture** 或 **False** 来控制是否使用作者提供的默认配置，但是源代码在解析时存在**Bug**未指定**is_default**的参数类型），导致后面的 **Ture** 或 **False** 会被默认识别为**str**字符串，在解析时又使用`if args.is_default`语句判断 **Ture** 或 **False** ，最终导致无论指定 **Ture** 或 **False**，字符串始终有值，始终会被判断为**True**，始终走作者默认配置，这样最终导致不少复现准确率与论文数据偏差过大，只有命令中完全删除`--is_default`参数，这样该参数默认为**False**，才可以不走默认配置。
+
+
+
+##### **1.4 复现配置说明**
+
+源代码会根据输入的命令自动匹配`lib_yamls`文件夹下的配置，下面解释流程：
+
+1. `lib_yamls`文件夹下根据不同任务类型又分为3个子文件夹，首先根据`--task_type`参数匹配对应的子文件夹，本次复现为节点分类任务，会匹配到`node_yaml`子文件夹。
+2. 然后根据**`--method`**参数匹配到对应模型的 **yaml** 配置文件，里面包含作者提供的该模型所有数据集的配置（例如学习率lr等），以及默认配置。
+3. 最后根据**`--dname`**参数匹配到 **yaml** 配置文件中具体的配置。
+
+
+
+
+## <span id="references"> 四.算法引用</span>
 
 | **ID** | **Method** | **Paper** |     **Venue**     |  
 | :----: | :----: | :----: |:----: |  
@@ -169,4 +191,8 @@ Note that The **is_default** parameter indicates whether to use the model’s de
 |15|T-HyperGNNs |[T-HyperGNNs: Hypergraph Neural Networks via Tensor Representations](https://ieeexplore.ieee.org/document/10462516)| TNNLS 2024|
 |16|HyperGT|[Hypergraph Transformer for Semi-Supervised Classification](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10446248)|ICASSP 2024|
 |17|TF-HNN |[Training-Free Message Passing for Learning on Hypergraphs](https://openreview.net/pdf?id=4AuyYxt7A2)| ICLR 2025|
+
+
+
+
 

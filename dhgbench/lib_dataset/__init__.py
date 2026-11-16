@@ -16,4 +16,4 @@ _multi_datasets_=["RHG_3", "RHG_10", "RHG_table", "RHG_pyramid",
                   "stream_player","twitter_friend"]
 
 # fair-hypergraph
-_fair_datasets_ = ['credit','german','bail'] 
+_fair_datasets_ = ['credit','german','bail']

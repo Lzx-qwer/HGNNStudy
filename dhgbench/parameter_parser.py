@@ -19,7 +19,7 @@ def method_config(args):
         config_name = args.dname
     try:
         # conf_dt = json.load(open(f"{os.path.join('./', 'lib_configs', args.method.lower(), config_name)}.json")) 
-        task_prefix=args.task_type.split('_')[0]+'_yamls'
+        task_prefix=args.task_type.split('_')[0]+'_yamls' #
         conf_dt = yaml.safe_load(open(f"{os.path.join('./', 'lib_yamls', task_prefix,'config_'+args.method.lower())}.yaml"))[config_name] 
         update_from_dict(args, conf_dt)
     except:
